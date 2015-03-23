@@ -9,13 +9,16 @@ public class GameControlScript : MonoBehaviour {
 	float totalTimeElapsed = 0; 
 	float score = 0f;			// total score
 	public bool isGameOver = false; 
+	public GUISkin skin; 
 
-	// Use this for initialization
+
+
 	void Start () {
 		Time.timeScale = 1;
 	}
-	
-	// Update is called once per frame
+
+
+
 	void Update () {
 	if (isGameOver)
 			return; // if the gameover variable is true then it will jump out of the update method
@@ -31,6 +34,7 @@ public class GameControlScript : MonoBehaviour {
 
 	void OnGUI()
 	{
+		GUI.skin = skin;
 		//check if game is not over, if so, display the score and the time left
 		if(!isGameOver)    
 		{

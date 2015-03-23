@@ -13,7 +13,7 @@ public class PlayerControl : MonoBehaviour {
 	private float gravity = 10f;
 	float playerZposition;
 	private bool isGrounded;
-	private float pSpeed = 25f;
+	private float pSpeed = 12f;
 
 	Bounds _bounds;
 	Transform lastPlatform;

@@ -48,7 +48,9 @@
   <ItemGroup>
      <Compile Include="Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Script\CollisionScript.cs" />
+     <Compile Include="Assets\Script\CountDownScript.cs" />
      <Compile Include="Assets\Script\GameControlScript.cs" />
+     <Compile Include="Assets\Script\PauseMenuScript.cs" />
      <Compile Include="Assets\Script\PlayerControl.cs" />
      <Compile Include="Assets\Script\SpawnScript.cs" />
      <Compile Include="Assets\Script\destroyObjects.cs" />
