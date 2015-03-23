@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class PlayerControl : MonoBehaviour {
 
 	public List<Transform> Platform;
-	private float speed= 0.3f;
+	private float speed= 0.5f;
 	public CharacterController player;
 	private Vector3 moveDirection = Vector3.zero;
 	private Vector3 pMov;
@@ -13,7 +13,7 @@ public class PlayerControl : MonoBehaviour {
 	private float gravity = 10f;
 	float playerZposition;
 	private bool isGrounded;
-	private float pSpeed = 1.5f;
+	private float pSpeed = 25f;
 
 	Bounds _bounds;
 	Transform lastPlatform;
@@ -23,7 +23,7 @@ public class PlayerControl : MonoBehaviour {
 
 	void Start () {
 
-		for(int i = 0;i < 10; i++){
+		for(int i = 0;i < 20; i++){
 
 			Transform platform = (Transform)Instantiate(Platform[Random.Range(0,Platform.Count)]);
 
@@ -38,6 +38,7 @@ public class PlayerControl : MonoBehaviour {
 				platform.transform.position = Vector3.zero;
 			}
 
+
 			platforms.Add(platform);
 		}
 	}
@@ -47,7 +48,7 @@ public class PlayerControl : MonoBehaviour {
 
 		playerZposition = player.transform.position.z;
 		player.transform.position += new Vector3 (0, 0, speed);
-		pMov = new Vector3 (Input.GetAxis ("Horizontal") * pSpeed * 50, 0, 0);
+		pMov = new Vector3 (Input.GetAxis ("Horizontal") * pSpeed , 0, 0);
 		
 		if (player.isGrounded) {
 			player.SimpleMove (pMov);	
@@ -95,8 +96,6 @@ public class PlayerControl : MonoBehaviour {
 			}
 		}
 
-	
-
-		transform.position += transform.forward * .3f;
+		transform.position += transform.forward * .5f;
 	}
 }
