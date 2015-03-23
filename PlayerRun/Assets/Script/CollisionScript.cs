@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class CollisionScript : MonoBehaviour {
-
+	public GameControlScript control;
 	// Use this for initialization
 	void Start () {
 	
@@ -10,16 +10,18 @@ public class CollisionScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log("dasdasdas");
+
 	}
 
 	void OnCollisionEnter(Collision other)
 	{
 		if (other.gameObject.tag == "powerup") {
+			control.powerUpCollected();
 			Debug.Log("powerup collected");
 			Destroy(other.gameObject);
 		}
 		if (other.gameObject.tag == "obstacle") {
+			control.obstacleCollected();
 			Destroy(other.gameObject);
 			Debug.Log("Obstacle Collected");
 		}
@@ -27,5 +29,4 @@ public class CollisionScript : MonoBehaviour {
 			Debug.Log("Bhand detected");
 		}
 	}
-
 }
