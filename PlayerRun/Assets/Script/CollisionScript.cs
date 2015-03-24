@@ -17,16 +17,11 @@ public class CollisionScript : MonoBehaviour {
 	{
 		if (other.gameObject.tag == "powerup") {
 			control.powerUpCollected();
-			Debug.Log("powerup collected");
 			Destroy(other.gameObject);
 		}
 		if (other.gameObject.tag == "obstacle") {
 			control.obstacleCollected();
 			Destroy(other.gameObject);
-			Debug.Log("Obstacle Collected");
-		}
-		if (other.gameObject.name == "Surface") {
-			Debug.Log("Bhand detected");
 		}
 	}
 }

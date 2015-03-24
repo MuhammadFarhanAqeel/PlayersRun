@@ -4,10 +4,10 @@ using System.Collections;
 public class GameControlScript : MonoBehaviour {
 
 	float timeRemaining = 10f; // pre-earned time
-	float timeExtension = 3f; //time to extend by colleting powerup
-	float timeDeduction = 2f; //time to reduce on collecting the snag
+	float timeExtension = 2f; //time to extend by colleting powerup
+	float timeDeduction = 4f; //time to reduce on collecting the snag
 	float totalTimeElapsed = 0; 
-	float score = 0f;			// total score
+	public float score = 0f;			// total score
 	public bool isGameOver = false; 
 	public GUISkin skin; 
 

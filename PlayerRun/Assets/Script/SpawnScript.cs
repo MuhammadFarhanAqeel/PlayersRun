@@ -8,7 +8,7 @@ public class SpawnScript : MonoBehaviour {
 	public GameObject Player;
 
 	float timeElapsed = 0;
-	float spawnCycle=0.5f;
+	public float spawnCycle=0.5f;
 	bool spawnPowerUp;
 
 	// Use this for initialization
@@ -25,11 +25,11 @@ public class SpawnScript : MonoBehaviour {
 			GameObject temp;
 			if(spawnPowerUp){
 				temp = (GameObject)Instantiate(powerup);
-				temp.transform.position = new Vector3( Random.Range(-3,4),pos.y ,pos.z + 100);
+				temp.transform.position = new Vector3( Random.Range(-6.4f,6.1f),pos.y ,pos.z + Random.Range(140,150));
 			}
 				else{
 					temp = (GameObject)Instantiate(Obstacle);
-				temp.transform.position = new Vector3( Random.Range(-3,4),pos.y ,pos.z + 150);
+				temp.transform.position = new Vector3( Random.Range(-6.4f,6.1f),pos.y ,pos.z + Random.Range(140,150));
 			}
 			timeElapsed -= spawnCycle;
 			spawnPowerUp =! spawnPowerUp;

@@ -13,7 +13,9 @@ public class PlayerControl : MonoBehaviour {
 	private float gravity = 10f;
 	float playerZposition;
 	private bool isGrounded;
-	private float pSpeed = 12f;
+	private float pSpeed = 10f;
+	public GameObject ScoreAndSpawnrate; // external object to manage dificulty
+
 
 	Bounds _bounds;
 	Transform lastPlatform;
@@ -96,6 +98,36 @@ public class PlayerControl : MonoBehaviour {
 			}
 		}
 
-		transform.position += transform.forward * .5f;
+		transform.position += transform.forward *.5f;
+
+		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 1500) {
+			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.35f;
+			transform.position += transform.forward * .1f;
+			speed = 0.6f;
+		}
+
+		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 300) {
+			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.3f;
+			transform.position += transform.forward * .2f;
+			speed = 0.7f;
+		} 
+
+		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 450) {
+			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.2f;
+			transform.position += transform.forward * .2f;
+			speed = 0.8f;
+		} 
+
+		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 600) {
+			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.15f;
+			transform.position += transform.forward * .2f;
+			speed = 0.9f;
+		} 
+
+		 if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 900) {
+			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.1f;
+			transform.position += transform.forward * 0.2f;
+			speed = 1.0f;
+		} 
 	}
 }

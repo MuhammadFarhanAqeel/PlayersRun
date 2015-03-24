@@ -1,11 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\CountDownScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\PlayerControl.cs">
     <Files>
-      <File FileName="Assets\Script\PlayerControl.cs" Line="9" Column="9" />
       <File FileName="Assets\Script\GameControlScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\PauseMenuScript.cs" Line="20" Column="23" />
-      <File FileName="Assets\Script\CountDownScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\MainMenuScript.cs" Line="15" Column="88" />
+      <File FileName="Assets\Script\CountDownScript.cs" Line="18" Column="27" />
+      <File FileName="Assets\Script\PlayerControl.cs" Line="109" Column="74" />
+      <File FileName="Assets\Script\PauseMenuScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\SpawnScript.cs" Line="38" Column="2" />
+      <File FileName="Assets\Script\CollisionScript.cs" Line="18" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
