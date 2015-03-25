@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class PlayerControl : MonoBehaviour {
 
 	public List<Transform> Platform;
-	private float speed= 0.5f;
+	private float speed= 0.7f;
 	public CharacterController player;
 	private Vector3 moveDirection = Vector3.zero;
 	private Vector3 pMov;
@@ -98,31 +98,55 @@ public class PlayerControl : MonoBehaviour {
 			}
 		}
 
+<<<<<<< HEAD
 		transform.position += new Vector3 (0f, 0f, speed);
+=======
+		transform.position += transform.forward *.7f;
+>>>>>>> origin/master
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 150) {
 			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.35f;
+<<<<<<< HEAD
 			speed = 0.6f;
+=======
+
+>>>>>>> origin/master
 		}
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 300) {
 			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.3f;
+<<<<<<< HEAD
 			speed = 0.7f;
+=======
+
+>>>>>>> origin/master
 		} 
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 450) {
 			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.2f;
+<<<<<<< HEAD
 			speed = 0.8f;
+=======
+
+>>>>>>> origin/master
 		} 
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 600) {
 			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.15f;
+<<<<<<< HEAD
 			speed = 0.9f;
+=======
+
+>>>>>>> origin/master
 		} 
 
 		 if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 900) {
 			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.1f;
+<<<<<<< HEAD
 			speed = 1.0f;
+=======
+
+>>>>>>> origin/master
 		} 
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 1100) {
