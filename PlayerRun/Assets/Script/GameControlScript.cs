@@ -56,7 +56,7 @@ public class GameControlScript : MonoBehaviour {
 			
 			//load the main menu, which as of now has not been created
 			if (GUI.Button(new Rect(Screen.width/4+10, Screen.height/4+2*Screen.height/10+10, Screen.width/2-20, Screen.height/10), "MAIN MENU")){
-				Application.LoadLevel(1);
+				Application.LoadLevel(0);
 			}
 			
 			//exit the game
