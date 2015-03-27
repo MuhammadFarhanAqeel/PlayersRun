@@ -12,10 +12,11 @@ public class GameControlScript : MonoBehaviour {
 	public GUISkin skin; 
 	public GameObject countdown;
 	public GameObject player;
-
+	PlayerControl control;
 
 	void Start () {
 		Time.timeScale = 1;
+		control = GameObject.Find("GameController").GetComponent<PlayerControl> ();
 	}
 
 
@@ -73,9 +74,11 @@ public class GameControlScript : MonoBehaviour {
 
 	public void powerUpCollected(){
 		timeRemaining += timeExtension;
+		control.GetComponent<PlayerControl>().powerUpCollectSound.Play ();
 	}
 
 	public void obstacleCollected(){
 		timeRemaining -= timeDeduction;
+		control.GetComponent<PlayerControl>().snagSound.Play ();
 	}
 }

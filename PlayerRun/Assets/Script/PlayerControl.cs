@@ -15,11 +15,18 @@ public class PlayerControl : MonoBehaviour {
 	private bool isGrounded;
 	private float pSpeed = 15f;
 	public GameObject ScoreAndSpawnrate; // external object to manage dificulty
-
+	GameControlScript control;
 	//touch inputs
 	private Touch initialTouch = new Touch ();	
 	private float distance = 0;
 	private bool hasSwiped;
+
+	 CountDownScript count;
+	 PauseMenuScript pause;
+
+	public AudioSource powerUpCollectSound;
+	public AudioSource jumpSound;
+	public AudioSource snagSound;
 
 
 
@@ -32,6 +39,9 @@ public class PlayerControl : MonoBehaviour {
 
 	void Start () {
 
+		count = GameObject.Find("GameController").GetComponent<CountDownScript> ();
+		pause = GameObject.Find("GameController").GetComponent<PauseMenuScript> ();
+		control = GameObject.Find ("GameController").GetComponent<GameControlScript> ();
 		for(int i = 0;i < 20; i++){
 
 			Transform platform = (Transform)Instantiate(Platform[Random.Range(0,Platform.Count)]);
@@ -55,6 +65,7 @@ public class PlayerControl : MonoBehaviour {
 
 	void FixedUpdate(){
 
+
 		playerZposition = player.transform.position.z;
 		player.transform.position += new Vector3 (0, 0, speed);
 		//pMov = new Vector3 (Input.GetAxis ("Horizontal") * pSpeed , 0, 0);
@@ -63,6 +74,15 @@ public class PlayerControl : MonoBehaviour {
 		if (player.isGrounded) {
 			player.SimpleMove (pMov);	
 			player.GetComponent<Animation> ().Play ("run");
+
+			if (pause.paused == false)
+			{
+				gameObject.GetComponent<AudioSource>().enabled = true;
+			}
+			else
+			{
+				gameObject.GetComponent<AudioSource>().enabled = false;
+			}
 			
 		}
 		
@@ -75,8 +95,6 @@ public class PlayerControl : MonoBehaviour {
 		
 		if (player.isGrounded)
 			isGrounded = true;
-		//moveDirection.y -= gravity * Time.deltaTime;
-		//player.Move (moveDirection * Time.deltaTime);
 
 
 		for (int i = 0; i < platforms.Count; i++) {
@@ -96,7 +114,7 @@ public class PlayerControl : MonoBehaviour {
 				_bounds = bounds;
 				
 				platforms.Add (platform);
-				
+					
 				break;
 				//platforms[i].position = lastPlatform.position + new Vector3(0,0,_bounds.extents.z * 2);
 				//lastPlatform = platforms[i];
@@ -167,12 +185,19 @@ public class PlayerControl : MonoBehaviour {
 				hasSwiped = false;
 			}
 		}
+
+
+		if (control.isGameOver) {
+			gameObject.GetComponent<AudioSource>().enabled = false;
+		}
 	}
 
 	void PlayerJump(){
 		isGrounded = false;
 		player.GetComponent<Animation> ().Stop ("run");
 		player.GetComponent<Animation> ().Play ("jump_pose");
+		jumpSound.Play ();
+		gameObject.GetComponent<AudioSource> ().enabled = false;
 		moveDirection.y = jumpSpeed / 3f;
 	}
 }

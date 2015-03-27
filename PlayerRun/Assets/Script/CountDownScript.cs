@@ -10,10 +10,15 @@ public class CountDownScript : MonoBehaviour {
 	private int countDown; //current CountDown number
 	public GUIText guiTextCountDown; // reference of GUIText
 	public Canvas pauseButton;
+	public AudioSource countDownSound;
+	public bool isCountDown = false;
 
 
 
 	void Start () {
+
+		character.GetComponent<AudioSource> ().enabled = false;
+
 		MonoBehaviour[] scriptComponentGameControl = gameObject.GetComponents<MonoBehaviour> ();
 		foreach (MonoBehaviour script in scriptComponentGameControl) {
 			script.enabled = false;
@@ -34,6 +39,7 @@ public class CountDownScript : MonoBehaviour {
 
 
 	IEnumerator CountDownFunction(){
+		countDownSound.PlayDelayed (.4f);
 		for(countDown = countMax; countDown>-1;countDown--){
 			if(countDown!=0){
 				//display the number to the screen via the GUIText
@@ -44,6 +50,9 @@ public class CountDownScript : MonoBehaviour {
 			else{
 				guiTextCountDown.text = "GO!";
 				yield return new WaitForSeconds(1);
+
+				countDownSound.Stop();
+				isCountDown = true;
 			}
 		}
 		MonoBehaviour[] scriptComponentGameControl = gameObject.GetComponents<MonoBehaviour> ();
@@ -55,6 +64,7 @@ public class CountDownScript : MonoBehaviour {
 		backWall.GetComponent<destroyObjects> ().enabled = true;
 		mainCamera.GetComponent<PlayerControl> ().enabled = true;
 		character.GetComponent<Animation> ().enabled = true;
+		character.GetComponent<AudioSource> ().enabled = true;
 		guiTextCountDown.enabled = false;
 		character.SetActive (true);
 		pauseButton.enabled = true;	
