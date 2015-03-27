@@ -1,14 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\GameControlScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\CollisionScript.cs">
     <Files>
-      <File FileName="Assets\Script\PlayerControl.cs" Line="95" Column="11" />
-      <File FileName="Assets\Script\GameControlScript.cs" Line="59" Column="28" />
-      <File FileName="Assets\Script\MainMenuScript.cs" Line="15" Column="88" />
-      <File FileName="Assets\Script\CountDownScript.cs" Line="18" Column="27" />
-      <File FileName="Assets\Script\PauseMenuScript.cs" Line="26" Column="3" />
+      <File FileName="Assets\Script\PauseMenuScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\PlayerControl.cs" Line="16" Column="27" />
+      <File FileName="Assets\Script\GameControlScript.cs" Line="36" Column="3" />
+      <File FileName="Assets\Script\MainMenuScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\CountDownScript.cs" Line="58" Column="22" />
       <File FileName="Assets\Script\SpawnScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\CollisionScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\CollisionScript.cs" Line="16" Column="16" />
       <File FileName="Assets\Script\destroyObjects.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

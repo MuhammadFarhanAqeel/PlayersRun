@@ -13,7 +13,7 @@ public class PlayerControl : MonoBehaviour {
 	private float gravity = 10f;
 	float playerZposition;
 	private bool isGrounded;
-	private float pSpeed = 10f;
+	private float pSpeed = 15f;
 	public GameObject ScoreAndSpawnrate; // external object to manage dificulty
 
 
@@ -50,8 +50,9 @@ public class PlayerControl : MonoBehaviour {
 
 		playerZposition = player.transform.position.z;
 		player.transform.position += new Vector3 (0, 0, speed);
-		pMov = new Vector3 (Input.GetAxis ("Horizontal") * pSpeed , 0, 0);
-		
+		//pMov = new Vector3 (Input.GetAxis ("Horizontal") * pSpeed , 0, 0);
+		pMov = new Vector3 (Input.acceleration.x *pSpeed , 0, 0);
+
 		if (player.isGrounded) {
 			player.SimpleMove (pMov);	
 			player.GetComponent<Animation>().Play ("run");
@@ -98,60 +99,37 @@ public class PlayerControl : MonoBehaviour {
 			}
 		}
 
-<<<<<<< HEAD
-		transform.position += new Vector3 (0f, 0f, speed);
-=======
-		transform.position += transform.forward *.7f;
->>>>>>> origin/master
+		transform.position += new Vector3(0,0,speed);
+
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 150) {
 			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.35f;
-<<<<<<< HEAD
-			speed = 0.6f;
-=======
-
->>>>>>> origin/master
+			speed = 0.7f;
 		}
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 300) {
 			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.3f;
-<<<<<<< HEAD
 			speed = 0.7f;
-=======
-
->>>>>>> origin/master
 		} 
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 450) {
 			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.2f;
-<<<<<<< HEAD
 			speed = 0.8f;
-=======
-
->>>>>>> origin/master
 		} 
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 600) {
 			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.15f;
-<<<<<<< HEAD
 			speed = 0.9f;
-=======
-
->>>>>>> origin/master
 		} 
 
 		 if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 900) {
 			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.1f;
-<<<<<<< HEAD
 			speed = 1.0f;
-=======
-
->>>>>>> origin/master
 		} 
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 1100) {
 			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.1f;
-			speed = 1.0f;
+			speed = 1.1f;
 		} 
 
 	}

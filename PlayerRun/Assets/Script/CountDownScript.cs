@@ -9,6 +9,7 @@ public class CountDownScript : MonoBehaviour {
 	private int countMax =  3; 
 	private int countDown; //current CountDown number
 	public GUIText guiTextCountDown; // reference of GUIText
+	public Canvas pauseButton;
 
 
 
@@ -21,6 +22,7 @@ public class CountDownScript : MonoBehaviour {
 			backWall.GetComponent<destroyObjects>().enabled = false;
 			mainCamera.GetComponent<PlayerControl>().enabled = false;
 			character.GetComponent<Animation>().enabled = false;
+			pauseButton.enabled = false;
 			StartCoroutine(CountDownFunction());
 
 		}
@@ -53,5 +55,6 @@ public class CountDownScript : MonoBehaviour {
 		mainCamera.GetComponent<PlayerControl> ().enabled = true;
 		character.GetComponent<Animation> ().enabled = true;
 		guiTextCountDown.enabled = false;
+		pauseButton.enabled = true;	
 	}
 }

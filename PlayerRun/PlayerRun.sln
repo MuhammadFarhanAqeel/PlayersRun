@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{3B19041E-8DFF-A22A-B55C-5EBB7272DE58}") = "PlayerRun", "Assembly-CSharp.csproj", "{93D6387B-98DB-A4CD-331B-D093400FA502}"
 EndProject
-Project("{3B19041E-8DFF-A22A-B55C-5EBB7272DE58}") = "PlayerRun", "Assembly-UnityScript.unityproj", "{384AEED1-5FFE-99AD-2D72-5802D342183D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,16 +13,11 @@ Global
 		{93D6387B-98DB-A4CD-331B-D093400FA502}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93D6387B-98DB-A4CD-331B-D093400FA502}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93D6387B-98DB-A4CD-331B-D093400FA502}.Release|Any CPU.Build.0 = Release|Any CPU
-		{384AEED1-5FFE-99AD-2D72-5802D342183D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{384AEED1-5FFE-99AD-2D72-5802D342183D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{384AEED1-5FFE-99AD-2D72-5802D342183D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{384AEED1-5FFE-99AD-2D72-5802D342183D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-<<<<<<< HEAD
-																																			GlobalSection(MonoDevelopProperties) = preSolution
+																																												GlobalSection(MonoDevelopProperties) = preSolution
 =======
 																																				GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> origin/master

@@ -10,7 +10,7 @@ public class GameControlScript : MonoBehaviour {
 	public float score = 0f;			// total score
 	public bool isGameOver = false; 
 	public GUISkin skin; 
-
+	public GameObject countdown;
 
 
 	void Start () {
@@ -44,6 +44,7 @@ public class GameControlScript : MonoBehaviour {
 		//if game over, display game over menu with score
 		else
 		{
+			countdown.GetComponent<CountDownScript>().pauseButton.enabled = false;
 			Time.timeScale = 0; //set the timescale to zero so as to stop the game world
 			
 			//display the final score
