@@ -22,6 +22,7 @@ public class CountDownScript : MonoBehaviour {
 			backWall.GetComponent<destroyObjects>().enabled = false;
 			mainCamera.GetComponent<PlayerControl>().enabled = false;
 			character.GetComponent<Animation>().enabled = false;
+		character.SetActive (false);
 			pauseButton.enabled = false;
 			StartCoroutine(CountDownFunction());
 
@@ -55,6 +56,7 @@ public class CountDownScript : MonoBehaviour {
 		mainCamera.GetComponent<PlayerControl> ().enabled = true;
 		character.GetComponent<Animation> ().enabled = true;
 		guiTextCountDown.enabled = false;
+		character.SetActive (true);
 		pauseButton.enabled = true;	
 	}
 }

@@ -11,6 +11,7 @@ public class GameControlScript : MonoBehaviour {
 	public bool isGameOver = false; 
 	public GUISkin skin; 
 	public GameObject countdown;
+	public GameObject player;
 
 
 	void Start () {
@@ -44,6 +45,7 @@ public class GameControlScript : MonoBehaviour {
 		//if game over, display game over menu with score
 		else
 		{
+			player.SetActive(false);
 			countdown.GetComponent<CountDownScript>().pauseButton.enabled = false;
 			Time.timeScale = 0; //set the timescale to zero so as to stop the game world
 			

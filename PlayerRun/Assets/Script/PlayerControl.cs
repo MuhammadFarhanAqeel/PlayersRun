@@ -16,6 +16,13 @@ public class PlayerControl : MonoBehaviour {
 	private float pSpeed = 15f;
 	public GameObject ScoreAndSpawnrate; // external object to manage dificulty
 
+	//touch inputs
+	private Touch initialTouch = new Touch ();	
+	private float distance = 0;
+	private bool hasSwiped;
+
+
+
 
 	Bounds _bounds;
 	Transform lastPlatform;
@@ -51,19 +58,16 @@ public class PlayerControl : MonoBehaviour {
 		playerZposition = player.transform.position.z;
 		player.transform.position += new Vector3 (0, 0, speed);
 		//pMov = new Vector3 (Input.GetAxis ("Horizontal") * pSpeed , 0, 0);
-		pMov = new Vector3 (Input.acceleration.x *pSpeed , 0, 0);
+		pMov = new Vector3 (Input.acceleration.x * pSpeed, 0, 0);
 
 		if (player.isGrounded) {
 			player.SimpleMove (pMov);	
-			player.GetComponent<Animation>().Play ("run");
+			player.GetComponent<Animation> ().Play ("run");
 			
 		}
 		
 		if (Input.GetButton ("Jump") && player.isGrounded) {
-			isGrounded = false;
-			player.GetComponent<Animation> ().Stop ("run");
-			player.GetComponent<Animation> ().Play ("jump_pose");
-			moveDirection.y = jumpSpeed / 3f;
+			PlayerJump ();
 		}
 		
 		player.Move (moveDirection);
@@ -72,26 +76,26 @@ public class PlayerControl : MonoBehaviour {
 		if (player.isGrounded)
 			isGrounded = true;
 		//moveDirection.y -= gravity * Time.deltaTime;
- 		//player.Move (moveDirection * Time.deltaTime);
+		//player.Move (moveDirection * Time.deltaTime);
 
 
-		for(int i = 0;i < platforms.Count; i++){
-			if(platforms[i].position.z < transform.position.z - _bounds.extents.z){
-				Destroy(platforms[i].gameObject);
-				platforms.RemoveAt(i);
+		for (int i = 0; i < platforms.Count; i++) {
+			if (platforms [i].position.z < transform.position.z - _bounds.extents.z) {
+				Destroy (platforms [i].gameObject);
+				platforms.RemoveAt (i);
 				
 				
 				
-				Transform platform = (Transform)Instantiate(Platform[Random.Range(0,Platform.Count)]);
+				Transform platform = (Transform)Instantiate (Platform [Random.Range (0, Platform.Count)]);
 				
-				Bounds prevbounds = platforms[platforms.Count - 1].FindChild("Surface").GetComponent<MeshRenderer>().bounds;
-				Bounds bounds = platform.FindChild("Surface").GetComponent<MeshRenderer>().bounds;
+				Bounds prevbounds = platforms [platforms.Count - 1].FindChild ("Surface").GetComponent<MeshRenderer> ().bounds;
+				Bounds bounds = platform.FindChild ("Surface").GetComponent<MeshRenderer> ().bounds;
 				
-				platform.transform.position = platforms[platforms.Count - 1].position + new Vector3(0,0,bounds.extents.z + prevbounds.extents.z); 
+				platform.transform.position = platforms [platforms.Count - 1].position + new Vector3 (0, 0, bounds.extents.z + prevbounds.extents.z); 
 				
 				_bounds = bounds;
 				
-				platforms.Add(platform);
+				platforms.Add (platform);
 				
 				break;
 				//platforms[i].position = lastPlatform.position + new Vector3(0,0,_bounds.extents.z * 2);
@@ -99,38 +103,76 @@ public class PlayerControl : MonoBehaviour {
 			}
 		}
 
-		transform.position += new Vector3(0,0,speed);
+		transform.position += new Vector3 (0, 0, speed);
 
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 150) {
-			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.35f;
+			ScoreAndSpawnrate.GetComponent<SpawnScript> ().spawnCycle = 0.35f;
 			speed = 0.7f;
 		}
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 300) {
-			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.3f;
+			ScoreAndSpawnrate.GetComponent<SpawnScript> ().spawnCycle = 0.3f;
 			speed = 0.7f;
 		} 
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 450) {
-			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.2f;
+			ScoreAndSpawnrate.GetComponent<SpawnScript> ().spawnCycle = 0.2f;
 			speed = 0.8f;
 		} 
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 600) {
-			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.15f;
+			ScoreAndSpawnrate.GetComponent<SpawnScript> ().spawnCycle = 0.15f;
 			speed = 0.9f;
 		} 
 
-		 if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 900) {
-			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.1f;
+		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 900) {
+			ScoreAndSpawnrate.GetComponent<SpawnScript> ().spawnCycle = 0.1f;
 			speed = 1.0f;
 		} 
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 1100) {
-			ScoreAndSpawnrate.GetComponent<SpawnScript>().spawnCycle = 0.1f;
+			ScoreAndSpawnrate.GetComponent<SpawnScript> ().spawnCycle = 0.1f;
 			speed = 1.1f;
 		} 
 
+
+		foreach (Touch t in Input.touches) {
+			if (t.phase == TouchPhase.Began) {
+				initialTouch = t;
+			}
+			else if(t.phase==TouchPhase.Moved &&!hasSwiped)
+			{
+				float deltaX = initialTouch.position.x - t.position.x;
+				float deltaY = initialTouch.position.y - t.position.y;
+				distance = Mathf.Sqrt((deltaX*deltaX)+(deltaY*deltaY));
+				bool swipeSideways = Mathf.Abs(deltaX) > Mathf.Abs(deltaY);
+
+				if(distance > 40f)
+				{
+					if(!swipeSideways && deltaY > 0) // swiped down
+					{
+
+					}
+					else if(!swipeSideways && deltaY <= 0) // swiped up
+					{
+						PlayerJump();
+					}
+					hasSwiped = true;
+				}
+			}
+			else if(t.phase == TouchPhase.Ended)
+			{
+				initialTouch = new Touch();
+				hasSwiped = false;
+			}
+		}
+	}
+
+	void PlayerJump(){
+		isGrounded = false;
+		player.GetComponent<Animation> ().Stop ("run");
+		player.GetComponent<Animation> ().Play ("jump_pose");
+		moveDirection.y = jumpSpeed / 3f;
 	}
 }

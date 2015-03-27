@@ -13,7 +13,6 @@ public class SpawnScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
@@ -25,11 +24,11 @@ public class SpawnScript : MonoBehaviour {
 			GameObject temp;
 			if(spawnPowerUp){
 				temp = (GameObject)Instantiate(powerup);
-				temp.transform.position = new Vector3( Random.Range(-6.4f,6.1f),pos.y ,pos.z + Random.Range(140,150));
+				temp.transform.position = new Vector3( Random.Range(-6.0f,6.0f),pos.y ,pos.z + Random.Range(140,150));
 			}
 				else{
 					temp = (GameObject)Instantiate(Obstacle);
-				temp.transform.position = new Vector3( Random.Range(-6.4f,6.1f),pos.y ,pos.z + Random.Range(140,150));
+				temp.transform.position = new Vector3( Random.Range(-6.0f,6.0f),pos.y ,pos.z + Random.Range(140,150));
 			}
 			timeElapsed -= spawnCycle;
 			spawnPowerUp =! spawnPowerUp;

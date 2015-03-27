@@ -7,22 +7,36 @@ public class PauseMenuScript : MonoBehaviour {
 	public GUISkin mySkin;
 	public string levelToLoad;
 	public bool paused = false;
-
+	public GameObject button;
+	GameControlScript control;
 
 
 	// Use this for initialization
 	void Start () {
-	
+		control = GetComponent<GameControlScript> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Escape)) {
-			if (paused)
-				paused = false;
-			else 
-				paused = true;
+		if (control.isGameOver == true) {
+			this.GetComponent<PauseMenuScript>().enabled = false;
 		}
+		if (paused) {
+			button.SetActive(false);
+		} else {
+			button.SetActive(true);
+		}
+
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			if (paused) {
+				button.SetActive (true);
+				paused = false;
+			} else {
+				button.SetActive(false);
+				paused = true;
+			}
+		}
+
 
 		if (paused) {
 			Time.timeScale = 0;
@@ -33,17 +47,13 @@ public class PauseMenuScript : MonoBehaviour {
 
 
 	public void onClickMouse(){
-		if (paused)
+
+		if (paused) {
 			paused = false;
-		else 
+		} 
+		else if(!paused){
 			paused = true;
-	
-	
-	if (paused) {
-		Time.timeScale = 0;
-	} else {
-		Time.timeScale = 1;
-	}
+		}
 }
 
 

@@ -54,6 +54,7 @@
      <Compile Include="Assets\Script\PlayerControl.cs" />
      <Compile Include="Assets\Script\SpawnScript.cs" />
      <Compile Include="Assets\Script\destroyObjects.cs" />
+     <Compile Include="Assets\selfDestroy.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
