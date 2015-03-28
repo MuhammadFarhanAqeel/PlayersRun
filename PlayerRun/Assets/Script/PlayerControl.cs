@@ -27,6 +27,7 @@ public class PlayerControl : MonoBehaviour {
 	public AudioSource powerUpCollectSound;
 	public AudioSource jumpSound;
 	public AudioSource snagSound;
+	public AudioSource gameOverSound;
 
 
 
@@ -38,6 +39,7 @@ public class PlayerControl : MonoBehaviour {
 
 
 	void Start () {
+
 
 		count = GameObject.Find("GameController").GetComponent<CountDownScript> ();
 		pause = GameObject.Find("GameController").GetComponent<PauseMenuScript> ();
@@ -68,8 +70,8 @@ public class PlayerControl : MonoBehaviour {
 
 		playerZposition = player.transform.position.z;
 		player.transform.position += new Vector3 (0, 0, speed);
-		//pMov = new Vector3 (Input.GetAxis ("Horizontal") * pSpeed , 0, 0);
-		pMov = new Vector3 (Input.acceleration.x * pSpeed, 0, 0);
+		pMov = new Vector3 (Input.GetAxis ("Horizontal") * pSpeed , 0, 0);
+		//pMov = new Vector3 (Input.acceleration.x * pSpeed, 0, 0);
 
 		if (player.isGrounded) {
 			player.SimpleMove (pMov);	

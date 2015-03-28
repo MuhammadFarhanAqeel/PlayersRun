@@ -12,11 +12,11 @@ public class GameControlScript : MonoBehaviour {
 	public GUISkin skin; 
 	public GameObject countdown;
 	public GameObject player;
-	PlayerControl control;
+	private PlayerControl control;
 
 	void Start () {
 		Time.timeScale = 1;
-		control = GameObject.Find("GameController").GetComponent<PlayerControl> ();
+		control = GameObject.Find("Main Camera").GetComponent<PlayerControl> ();
 	}
 
 
@@ -31,6 +31,7 @@ public class GameControlScript : MonoBehaviour {
 
 		if (timeRemaining <= 0) {
 			isGameOver =true;
+			control.gameOverSound.Play();
 		}
 	}
 

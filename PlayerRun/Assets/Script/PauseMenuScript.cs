@@ -9,11 +9,12 @@ public class PauseMenuScript : MonoBehaviour {
 	public bool paused = false;
 	public GameObject button;
 	GameControlScript control;
-
+	public GameObject player;
 
 	// Use this for initialization
 	void Start () {
 		control = GetComponent<GameControlScript> ();
+
 	}
 	
 	// Update is called once per frame
@@ -23,8 +24,10 @@ public class PauseMenuScript : MonoBehaviour {
 		}
 		if (paused) {
 			button.SetActive(false);
+			player.GetComponent<AudioSource>().enabled = false;
 		} else {
 			button.SetActive(true);
+			player.GetComponent<AudioSource>().enabled = true;
 		}
 
 		if (Input.GetKeyDown(KeyCode.Escape)) {

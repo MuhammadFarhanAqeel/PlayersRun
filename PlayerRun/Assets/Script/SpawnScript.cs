@@ -24,11 +24,11 @@ public class SpawnScript : MonoBehaviour {
 			GameObject temp;
 			if(spawnPowerUp){
 				temp = (GameObject)Instantiate(powerup);
-				temp.transform.position = new Vector3( Random.Range(-6.0f,6.0f),pos.y ,pos.z + Random.Range(140,150));
+				temp.transform.position = new Vector3( Random.Range(-6.0f,6.0f),pos.y ,pos.z + Random.Range(240,250));
 			}
 				else{
 					temp = (GameObject)Instantiate(Obstacle);
-				temp.transform.position = new Vector3( Random.Range(-6.0f,6.0f),pos.y ,pos.z + Random.Range(140,150));
+				temp.transform.position = new Vector3( Random.Range(-6.0f,6.0f),pos.y ,pos.z + Random.Range(240,250));
 			}
 			timeElapsed -= spawnCycle;
 			spawnPowerUp =! spawnPowerUp;
