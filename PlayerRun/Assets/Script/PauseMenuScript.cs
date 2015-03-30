@@ -14,7 +14,6 @@ public class PauseMenuScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		control = GetComponent<GameControlScript> ();
-
 	}
 	
 	// Update is called once per frame
@@ -30,17 +29,22 @@ public class PauseMenuScript : MonoBehaviour {
 			player.GetComponent<AudioSource>().enabled = true;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Escape)) {
-			if (paused) {
-				button.SetActive (true);
+		if (Input.GetKeyDown(KeyCode.Escape)){
+
+			if (paused == true)
+			{
 				paused = false;
-			} else {
+				button.SetActive(true);
+			
+			} 
+			else
+			{
+				paused = true; 
 				button.SetActive(false);
-				paused = true;
+
+
 			}
 		}
-
-
 		if (paused) {
 			Time.timeScale = 0;
 		} else {
@@ -48,13 +52,11 @@ public class PauseMenuScript : MonoBehaviour {
 		}
 	}
 
-
 	public void onClickMouse(){
-
 		if (paused) {
 			paused = false;
 		} 
-		else if(!paused){
+		else{
 			paused = true;
 		}
 }
@@ -78,7 +80,7 @@ public class PauseMenuScript : MonoBehaviour {
 			}
 			
 			if (GUI.Button(new Rect(Screen.width/4+10, Screen.height/4+3*Screen.height/10+10, Screen.width/2-20, Screen.height/10), "MAIN MENU")){
-				Application.LoadLevel(levelToLoad);
+				Application.LoadLevel("MainMenuScene");
 			} 
 		}
 	}

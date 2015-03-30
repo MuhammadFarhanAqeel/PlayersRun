@@ -13,10 +13,11 @@ public class PlayerControl : MonoBehaviour {
 	private float gravity = 10f;
 	float playerZposition;
 	private bool isGrounded;
-	private float pSpeed = 15f;
+	private float pSpeed = 12f;
 	public GameObject ScoreAndSpawnrate; // external object to manage dificulty
 	GameControlScript control;
 	//touch inputs
+
 	private Touch initialTouch = new Touch ();	
 	private float distance = 0;
 	private bool hasSwiped;
@@ -58,27 +59,22 @@ public class PlayerControl : MonoBehaviour {
 			}else{
 				platform.transform.position = Vector3.zero;
 			}
-
-
 			platforms.Add(platform);
 		}
 	}
 
 
 	void FixedUpdate(){
-
-
 		playerZposition = player.transform.position.z;
 		player.transform.position += new Vector3 (0, 0, speed);
-		pMov = new Vector3 (Input.GetAxis ("Horizontal") * pSpeed , 0, 0);
-		//pMov = new Vector3 (Input.acceleration.x * pSpeed, 0, 0);
+		//pMov = new Vector3 (Input.GetAxis ("Horizontal") * pSpeed , 0, 0);
+		pMov = new Vector3 (Input.acceleration.x *pSpeed, 0, 0);
 
 		if (player.isGrounded) {
 			player.SimpleMove (pMov);	
 			player.GetComponent<Animation> ().Play ("run");
 
-			if (pause.paused == false)
-			{
+			if (pause.paused == false){
 				gameObject.GetComponent<AudioSource>().enabled = true;
 			}
 			else
@@ -89,7 +85,7 @@ public class PlayerControl : MonoBehaviour {
 		}
 		
 		if (Input.GetButton ("Jump") && player.isGrounded) {
-			PlayerJump ();
+		PlayerJump ();
 		}
 		
 		player.Move (moveDirection);
@@ -103,20 +99,12 @@ public class PlayerControl : MonoBehaviour {
 			if (platforms [i].position.z < transform.position.z - _bounds.extents.z) {
 				Destroy (platforms [i].gameObject);
 				platforms.RemoveAt (i);
-				
-				
-				
 				Transform platform = (Transform)Instantiate (Platform [Random.Range (0, Platform.Count)]);
-				
 				Bounds prevbounds = platforms [platforms.Count - 1].FindChild ("Surface").GetComponent<MeshRenderer> ().bounds;
 				Bounds bounds = platform.FindChild ("Surface").GetComponent<MeshRenderer> ().bounds;
-				
 				platform.transform.position = platforms [platforms.Count - 1].position + new Vector3 (0, 0, bounds.extents.z + prevbounds.extents.z); 
-				
 				_bounds = bounds;
-				
 				platforms.Add (platform);
-					
 				break;
 				//platforms[i].position = lastPlatform.position + new Vector3(0,0,_bounds.extents.z * 2);
 				//lastPlatform = platforms[i];
@@ -125,14 +113,13 @@ public class PlayerControl : MonoBehaviour {
 
 		transform.position += new Vector3 (0, 0, speed);
 
-
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 150) {
-			ScoreAndSpawnrate.GetComponent<SpawnScript> ().spawnCycle = 0.35f;
+			ScoreAndSpawnrate.GetComponent<SpawnScript> ().spawnCycle = 0.3f;
 			speed = 0.7f;
 		}
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 300) {
-			ScoreAndSpawnrate.GetComponent<SpawnScript> ().spawnCycle = 0.3f;
+			ScoreAndSpawnrate.GetComponent<SpawnScript> ().spawnCycle = 0.25f;
 			speed = 0.7f;
 		} 
 
@@ -152,11 +139,9 @@ public class PlayerControl : MonoBehaviour {
 		} 
 
 		if (ScoreAndSpawnrate.GetComponent<GameControlScript> ().score > 1100) {
-			ScoreAndSpawnrate.GetComponent<SpawnScript> ().spawnCycle = 0.1f;
+			ScoreAndSpawnrate.GetComponent<SpawnScript> ().spawnCycle = 0.05f;
 			speed = 1.1f;
 		} 
-
-
 		foreach (Touch t in Input.touches) {
 			if (t.phase == TouchPhase.Began) {
 				initialTouch = t;
@@ -168,13 +153,13 @@ public class PlayerControl : MonoBehaviour {
 				distance = Mathf.Sqrt((deltaX*deltaX)+(deltaY*deltaY));
 				bool swipeSideways = Mathf.Abs(deltaX) > Mathf.Abs(deltaY);
 
-				if(distance > 40f)
+				if(distance > 10f)
 				{
 					if(!swipeSideways && deltaY > 0) // swiped down
 					{
 
 					}
-					else if(!swipeSideways && deltaY <= 0) // swiped up
+					else if(!swipeSideways && deltaY <= 0 && player.isGrounded) // swiped up
 					{
 						PlayerJump();
 					}
@@ -187,14 +172,13 @@ public class PlayerControl : MonoBehaviour {
 				hasSwiped = false;
 			}
 		}
-
-
 		if (control.isGameOver) {
 			gameObject.GetComponent<AudioSource>().enabled = false;
 		}
 	}
 
 	void PlayerJump(){
+		player.GetComponent<AudioSource> ().enabled = false;
 		isGrounded = false;
 		player.GetComponent<Animation> ().Stop ("run");
 		player.GetComponent<Animation> ().Play ("jump_pose");

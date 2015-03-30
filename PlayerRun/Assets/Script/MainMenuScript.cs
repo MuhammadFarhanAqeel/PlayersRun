@@ -19,7 +19,7 @@ public class MainMenuScript : MonoBehaviour {
 		}
 
 		if (GUI.Button(new Rect(Screen.width/4+10, Screen.height/4+2*Screen.height/10+10, Screen.width/2-20, Screen.height/10), "CREDITS")){
-			Application.LoadLevel(optionsLevel);
+			Application.LoadLevel("Credits");
 		}
 
 		if (GUI.Button(new Rect(Screen.width/4+10, Screen.height/4+3*Screen.height/10+10, Screen.width/2-20, Screen.height/10), "EXIT")){

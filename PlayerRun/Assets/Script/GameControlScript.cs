@@ -19,9 +19,7 @@ public class GameControlScript : MonoBehaviour {
 		control = GameObject.Find("Main Camera").GetComponent<PlayerControl> ();
 	}
 
-
-
-	void Update () {
+	void FixedUpdate () {
 	if (isGameOver)
 			return; // if the gameover variable is true then it will jump out of the update method
 
@@ -70,8 +68,6 @@ public class GameControlScript : MonoBehaviour {
 			}
 		}
 	}
-
-
 
 	public void powerUpCollected(){
 		timeRemaining += timeExtension;

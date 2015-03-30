@@ -3,17 +3,8 @@ using System.Collections;
 
 public class CollisionScript : MonoBehaviour {
 	public GameControlScript control;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
 
-	}
-
-	void OnCollisionEnter(Collision other)
+	void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.tag == "powerup") {
 			control.powerUpCollected();

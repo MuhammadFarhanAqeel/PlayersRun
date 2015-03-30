@@ -13,10 +13,7 @@ public class CountDownScript : MonoBehaviour {
 	public AudioSource countDownSound;
 	public bool isCountDown = false;
 
-
-
 	void Start () {
-
 		character.GetComponent<AudioSource> ().enabled = false;
 
 		MonoBehaviour[] scriptComponentGameControl = gameObject.GetComponents<MonoBehaviour> ();
@@ -30,13 +27,7 @@ public class CountDownScript : MonoBehaviour {
 		character.SetActive (false);
 			pauseButton.enabled = false;
 			StartCoroutine(CountDownFunction());
-
 		}
-
-	void Update () {
-	
-	}
-
 
 	IEnumerator CountDownFunction(){
 		countDownSound.PlayDelayed (.4f);
