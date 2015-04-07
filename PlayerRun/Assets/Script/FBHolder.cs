@@ -9,8 +9,9 @@ public class FBHolder : MonoBehaviour {
 	public GameObject UIFBNotLoggedIn;
 	public GameObject UIFBAvatar;
 	public GameObject UIFBUserName;
-	
-	
+	public Text ScoresDebug;
+	private List<object> scoresList = null;
+
 	private Dictionary<string,string> profile;
 	
 	void Awake()
@@ -106,7 +107,7 @@ public class FBHolder : MonoBehaviour {
 			linkCaption: "I am playing this awesome Game",
 			picture: "http://images.clipartpanda.com/runner-clipart-runner-hi.png",
 			linkName: "Check out this game",
-			link: "http://apps.facebook.com" +FB.AppId +"/?challange_brag=" +(FB.IsLoggedIn?FB.UserId: "guest")
+			link: "http://apps.facebook.com/" +FB.AppId +"/?challange_brag=" +(FB.IsLoggedIn?FB.UserId: "guest")
 			);
 	}
 	
@@ -117,5 +118,27 @@ public class FBHolder : MonoBehaviour {
 			message: "this game is awesome!! join me, now!!!",
 			title: "Invite your friends to join you"
 			);
+	}
+
+	public void QueryScores(){
+		FB.API ("/app/scores?fields=score,user.limit(30)",Facebook.HttpMethod.GET,ScoresCallBack);
+	}
+
+	private void ScoresCallBack(FBResult result){
+		ScoresDebug.text = "";
+
+		scoresList = Util.DeserializeScores (result.Text);
+
+		foreach(object score in scoresList){
+			var entry = (Dictionary<string,object>) score;
+			var user = (Dictionary<string,object>) entry["user"];
+
+			ScoresDebug.text = ScoresDebug.text + "UserName: " +user["name"]+" - "+entry["score"]+", ";
+		}
+
+	}
+
+	public void SetScore(){
+
 	}
 }
